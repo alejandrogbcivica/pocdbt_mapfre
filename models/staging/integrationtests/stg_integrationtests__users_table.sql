@@ -1,0 +1,34 @@
+{{ config(
+    materialized = 'view'
+) }}
+
+with source as(
+    select *
+    from {{ source('integrationtests', 'users') }}
+),
+
+transformed_source as (
+
+    select
+        user_id,
+        lower(trim(username)) as username,
+        lower(trim(email)) as email,
+        initcap(trim(first_name)) as first_name,
+        initcap(trim(last_name)) as last_name,
+        date_of_birth,
+        trim(phone_number) as phone_number,
+        initcap(trim(country)) as country,
+        initcap(trim(city)) as city,
+        registration_date,
+        last_login_date,
+        is_active,
+        user_type,
+        profile_picture_url,
+        bio,
+        ingestion_date
+    from source
+
+)
+
+select *
+from transformed_source
