@@ -4,6 +4,10 @@ sources:
   - name: integrationtests
     description: "Fuente de datos para pruebas de integración en el entorno de desarrollo"
     database: "ct_maptech_{{env_var('DBT_ENVIRONMENT')}}_silver"
+    freshness:
+      warn_after: { count: 1, period: day }
+      error_after: { count: 2, period: day }
+    loaded_at_field: ingestion_date
     tables:
       - name: users
         description: "Tabla de usuarios del sistema con información personal, de contacto y actividad"

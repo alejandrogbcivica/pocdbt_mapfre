@@ -1,7 +1,6 @@
 {{ config(
     materialized = 'incremental',
-    unique_key= 'user_id',
-    merge_update_columns = ['email', 'last_login_date', 'is_active','ingestion_date']
+    unique_key= 'user_id'
 ) }}
 
 with source as (

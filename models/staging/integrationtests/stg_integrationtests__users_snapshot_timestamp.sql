@@ -1,1 +1,0 @@
-select * from {{ ref('users_snapshot_timestamp') }}
