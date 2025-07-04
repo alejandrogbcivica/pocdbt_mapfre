@@ -2,34 +2,34 @@ version: 2
 
 models:
   - name: stg_integrationtests__users
-    description: "Modelo staging que estandariza y limpia los datos de usuarios para pruebas de integración."
+    description: "Staging model that standardizes and cleans user data for integration tests."
     columns:
       - name: user_id
-        description: "Identificador único del usuario"
+        description: "Unique identifier of the user"
         tests:
           - not_null
           - unique
 
       - name: username
-        description: "Nombre de usuario en minúsculas y sin espacios"
+        description: "Username in lowercase and without spaces"
         tests:
           - not_null
 
       - name: email
-        description: "Correo electrónico del usuario en minúsculas"
+        description: "Users email address in lowercase"
         tests:
           - not_null
 
       - name: first_name
-        description: "Nombre del usuario con mayúscula inicial"
+        description: "Users first name with initial capital letter"
 
       - name: last_name
-        description: "Apellido del usuario con mayúscula inicial"
+        description: "Users last name with initial capital letter"
 
       - name: phone_number
-        description: "Número de teléfono del usuario sin espacios adicionales"
+        description: "Users phone number without extra spaces"
 
       - name: ingestion_date
-        description: "Fecha en la que se ingirieron los datos"
+        description: "Date when the data was ingested"
         tests:
           - not_null
