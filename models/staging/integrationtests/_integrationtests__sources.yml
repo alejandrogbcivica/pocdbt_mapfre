@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: integrationtests
-    description: "Fuente de datos para pruebas de integración en el entorno de desarrollo"
+    description: "Data source for integration tests in the development environment"
     database: "ct_maptech_{{env_var('DBT_ENVIRONMENT')}}_silver"
     freshness:
       warn_after: { count: 1, period: day }
@@ -10,77 +10,77 @@ sources:
     loaded_at_field: ingestion_date
     tables:
       - name: users
-        description: "Tabla de usuarios del sistema con información personal, de contacto y actividad"
+        description: "System users table with personal, contact, and activity information"
         columns:
           - name: user_id
             data_type: number
-            description: "Identificador único del usuario, clave primaria de la tabla"
+            description: "Unique user identifier, primary key of the table"
             tests:
               - unique
               - not_null
           - name: username
             data_type: varchar
-            description: "Nombre de usuario único para autenticación en el sistema"
+            description: "Unique username for system authentication"
             tests:
               - not_null
           - name: email
             data_type: varchar
-            description: "Dirección de correo electrónico única del usuario"
+            description: "Users unique email address"
             tests:
               - unique
               - not_null
           - name: first_name
             data_type: varchar
-            description: "Nombre del usuario"
+            description: "Users first name"
             tests:
               - not_null
           - name: last_name
             data_type: varchar
-            description: "Apellido del usuario"
+            description: "Users last name"
             tests:
               - not_null
           - name: date_of_birth
             data_type: date
-            description: "Fecha de nacimiento del usuario"
+            description: "Users date of birth"
           - name: phone_number
             data_type: varchar
-            description: "Número de teléfono del usuario"
+            description: "Users phone number"
           - name: country
             data_type: varchar
-            description: "País de residencia del usuario"
+            description: "Users country of residence"
           - name: city
             data_type: varchar
-            description: "Ciudad de residencia del usuario"
+            description: "Users city of residence"
           - name: registration_date
             data_type: timestamp_ntz
-            description: "Fecha y hora de registro del usuario en el sistema"
+            description: "Date and time when the user registered in the system"
             tests:
               - not_null
           - name: last_login_date
             data_type: timestamp_ntz
-            description: "Fecha y hora del último acceso del usuario al sistema"
+            description: "Date and time of the Users last login to the system"
           - name: is_active
             data_type: boolean
-            description: "Indicador de si el usuario está activo en el sistema (true/false)"
+            description: "Indicates if the user is active in the system (true/false)"
             tests:
               - not_null
               - accepted_values:
                   values: [true, false]
           - name: user_type
             data_type: varchar
-            description: "Tipo de usuario: standard, premium, admin"
+            description: "User type: standard, premium, admin"
             tests:
               - not_null
               - accepted_values:
                   values: ['standard', 'premium', 'admin']
           - name: profile_picture_url
             data_type: varchar
-            description: "URL de la imagen de perfil del usuario"
+            description: "URL of the Users profile picture"
           - name: bio
             data_type: varchar
-            description: "Biografía o descripción personal del usuario"
+            description: "Users biography or personal description"
           - name: ingestion_date
             data_type: timestamp_ntz
-            description: "Fecha y hora de ingesta del registro en el data warehouse"
+            description: "Date and time the record was ingested into the data warehouse"
             tests:
-              - not_null 
+              - not_null
